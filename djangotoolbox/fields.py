@@ -71,7 +71,7 @@ class AbstractIterableField(models.Field):
         return '%s:%s' % (self.db_type_prefix, item_db_type)
 
     def _convert(self, func, values, *args, **kwargs):
-        if isinstance(values, (list, tuple, set)):
+        if isinstance(values, (list, tuple, set, unicode, str)):
             return self._type(func(value, *args, **kwargs) for value in values)
         return values
 
